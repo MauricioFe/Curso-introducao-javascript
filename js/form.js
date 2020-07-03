@@ -75,7 +75,7 @@ function validaPaciente(paciente) {
 
 function exibeMensagensDeErro(erros) {
     var ul = document.querySelector("#mensagens-erro");
-    ul.innerHTML = "";/*Permite controlar o html interno dentro de um elemento*/
+    ul.innerHTML = "";
     erros.forEach((erro) => {
         var li = document.createElement("li");
         li.textContent = erro;
