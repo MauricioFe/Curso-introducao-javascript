@@ -1,6 +1,7 @@
 var titulo = document.querySelector("h1");
 titulo.textContent = "Aparecida Nutricionista";
 
+
 var pacientes = document.querySelectorAll(".paciente");
 
 for (var i = 0; i < pacientes.length; i++) {
@@ -33,6 +34,41 @@ for (var i = 0; i < pacientes.length; i++) {
         tdImc.textContent = imc.toFixed(2);
     }
 }
-function calculaImc() {
 
-}
+
+var boataoAdicionar = document.querySelector("#adicionar-paciente")
+
+boataoAdicionar.addEventListener("click", (event) => {
+    event.preventDefault();/*Previne o comportamento padrão*/
+    var form = document.querySelector("#form-adiciona")
+    var nome = form.nome.value;
+    var peso = form.peso.value;
+    var altura = form.altura.value;
+    var gordura = form.gordura.value;
+    if (nome != "" && peso != "" && altura != "" && gordura != "") {
+
+
+        var pacienteTr = document.createElement("tr");
+        var nomeTd = document.createElement("td");
+        var pesoTd = document.createElement("td");
+        var alturaTd = document.createElement("td");
+        var gorduraTd = document.createElement("td");
+        var imcTd = document.createElement("td");
+        nomeTd.textContent = nome;
+        pesoTd.textContent = peso;
+        alturaTd.textContent = altura;
+        gorduraTd.textContent = gordura;
+        var calculoImc = peso /(altura*altura);
+        imcTd.textContent =  calculoImc.toFixed(2);
+
+        pacienteTr.appendChild(nomeTd);
+        pacienteTr.appendChild(pesoTd);
+        pacienteTr.appendChild(alturaTd);
+        pacienteTr.appendChild(gorduraTd);
+        pacienteTr.appendChild(imcTd);
+        var tabela = document.querySelector("#tabela-pacientes")
+        tabela.appendChild(pacienteTr);
+    } else {
+        alert("Todos os campos são obrigatórios");
+    }
+});
