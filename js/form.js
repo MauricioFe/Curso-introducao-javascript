@@ -1,10 +1,26 @@
 
-var boataoAdicionar = document.querySelector("#adicionar-paciente")
+var botaoAdicionar = document.querySelector("#adicionar-paciente")
+/* palavra reservada para variavel (var, let, const) nome do objeto = {
+    atributos ->
+    chave : valor,
+    var aluno = {
+    nome: "Maurício Lacerda",
+    idade: 21,
+    martricula: "737386382",
+    cpf: "234.567.867-97",
+    estaMatriculado: true
+}
 
-boataoAdicionar.addEventListener("click", (event) => {
+console.log(aluno)
+console.log(`O aluno matrículado é o ${aluno.nome} com o cpf ${aluno.cpf}`)
+}
+*/
+
+botaoAdicionar.addEventListener("click", (event) => {
     event.preventDefault();/*Previne o comportamento padrão*/
     var form = document.querySelector("#form-adiciona");
     var paciente = getValoreDoForm(form);
+    console.log(paciente)
     var erros = validaPaciente(paciente);
 
     console.log(erros)
@@ -12,15 +28,15 @@ boataoAdicionar.addEventListener("click", (event) => {
         exibeMensagensDeErro(erros);
         return;
     }
-  
+
     adicionaPacienteNaTabela(paciente);
+    //resetar os campos do formulário
     form.reset();
     var mensagemErro = document.querySelector("#mensagens-erro");
-    mensagemErro.innerHTML ="";
+    mensagemErro.innerHTML = "";
 });
 
-function adicionaPacienteNaTabela(paciente){
- 
+function adicionaPacienteNaTabela(paciente) {
     var pacienteTr = montarTr(paciente)
     var tabela = document.querySelector("#tabela-pacientes");
     tabela.appendChild(pacienteTr);
@@ -37,7 +53,6 @@ function getValoreDoForm(form) {
     return paciente;
 }
 function montarTr(paciente) {
-
     var pacienteTr = document.createElement("tr");
     pacienteTr.classList.add("paciente");
     pacienteTr.appendChild(montaTd(paciente.nome, "info-nome"));
@@ -75,7 +90,6 @@ function validaPaciente(paciente) {
         erros.push("A peso não pode ser em branco")
     }
     return erros;
-
 }
 
 function exibeMensagensDeErro(erros) {
